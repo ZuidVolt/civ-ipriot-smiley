@@ -14,6 +14,7 @@ class Smiley:
 
         Y = self.YELLOW
         O = self.BLANK
+        # fmt: off
         self.pixels = [
             O, Y, Y, Y, Y, Y, Y, O,
             Y, Y, Y, Y, Y, Y, Y, Y,
@@ -24,6 +25,7 @@ class Smiley:
             Y, Y, Y, Y, Y, Y, Y, Y,
             O, Y, Y, Y, Y, Y, Y, O,
         ]
+         # fmt: on
 
     def dim_display(self, dimmed=True):
         """

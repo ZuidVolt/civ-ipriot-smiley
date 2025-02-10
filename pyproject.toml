@@ -1,0 +1,60 @@
+[project]
+name = "civ-ipriot-smiley"
+version = "0.1.0"
+description = ""
+readme = "README.md"
+requires-python = ">=3.8"
+dependencies = []
+
+[project.license]
+text = "Apache License"
+
+[project.optional-dependencies]
+dev = [ "ruff", "mypy", "coverage", "radon", "vulture",]
+
+[tool.ruff]
+line-length = 79
+fix = true
+unsafe-fixes = true
+preview = true
+
+[tool.mypy]
+# strict = true
+
+[tool.pyright]
+venvPath = "."
+venv = ".venv"
+pythonVersion = "3.8"
+reportUnusedCallResult = false
+reportAny = false
+reportExplicitAny = false
+
+[tool.radon]
+cc_max = "C"
+exclude = [ "tests/*",]
+cc = [ "-a", "-nc", "-s",]
+mi = [ "-s",]
+
+[tool.ruff.lint]
+preview = true
+select = [ "F", "W", "N", "C90", "B", "UP", "RET", "SIM", "RUF", "NPY", "PD", "ARG", "TID", "PTH", "Q", "ISC", "PIE", "YTT", "ASYNC", "C4", "T10", "A", "COM", "RSE", "PL",  "PGH", "I", "ERA", "TRY",] # removed for nnow "D" "E",
+ignore = [ "PLR0913", "PLR0911", "PLR0914", "PLR6301", "PD901", "E501", "G004", "RUF100", "PGH003", "PLR0911", "PLR0912", "COM812", "ISC001", "D100", "D104", "D203", "D212", "RET505", "TRY003","N806","ERA001"]
+
+[tool.ruff.format]
+quote-style = "double"
+docstring-code-format = true
+docstring-code-line-length = "dynamic"
+indent-style = "space"
+
+[tool.coverage.run]
+source = [ ".",]
+branch = true
+
+[tool.coverage.report]
+show_missing = true
+
+[tool.coverage.html]
+directory = "htmlcov"
+
+[tool.ruff.lint.pydocstyle]
+convention = "google"
