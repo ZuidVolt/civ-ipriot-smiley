@@ -3,7 +3,7 @@ name = "civ-ipriot-smiley"
 version = "0.1.0"
 description = ""
 readme = "README.md"
-requires-python = ">=3.13"
+requires-python = ">=3.12"
 dependencies = ["sense-hat==2.2.0"]
 
 [project.license]
@@ -20,7 +20,7 @@ preview = true
 
 [tool.pyright]
 typeCheckingMode = "basic"
-pythonVersion = "3.13"
+pythonVersion = "3.12"
 reportUnusedCallResult = false
 reportAny = false
 reportExplicitAny = false
