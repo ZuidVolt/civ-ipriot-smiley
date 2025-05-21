@@ -22,8 +22,8 @@ preview = true
 typeCheckingMode = "basic"
 pythonVersion = "3.12"
 reportUnusedCallResult = false
-reportAny = false
-reportExplicitAny = false
+# reportAny = false
+# reportExplicitAny = false
 
 [tool.ruff.lint]
 preview = true
