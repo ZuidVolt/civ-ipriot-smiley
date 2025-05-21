@@ -1,6 +1,6 @@
 # ruff: noqa: N806 E741
 
-from sense_hat import SenseHat
+from sense_hat import LEDMatrix, SenseHat
 
 
 class Smiley:
@@ -16,7 +16,7 @@ class Smiley:
         # fmt: off
         Y = self.YELLOW
         O = self.BLANK
-        self.pixels = [
+        self.pixels: LEDMatrix = [
             O, Y, Y, Y, Y, Y, Y, O,
             Y, Y, Y, Y, Y, Y, Y, Y,
             Y, Y, Y, Y, Y, Y, Y, Y,
@@ -28,7 +28,7 @@ class Smiley:
         ]
         # fmt: on
 
-    def dim_display(self, dimmed=True):
+    def dim_display(self, dimmed: bool = True):
         """Set the SenseHat's light intensity to low (True) or high (False).
 
         :param dimmed: Dim the display if True, otherwise don't dim.

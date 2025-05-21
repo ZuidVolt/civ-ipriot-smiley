@@ -12,12 +12,20 @@ import queue
 import time
 import tkinter as tk
 
+# raf consts
 DEFAULT_RGB = [(255, 255, 255)] * 64
 
+# my consts
+LOGGER_LEVEL: int = logging.DEBUG  # Default: INFO
+TK_WINDOW_HIGHT = 60
+TK_WINDOW_WIDTH = 60
+
+type RGBTuple = tuple[int, int, int] | None
+type LEDMatrix = list[RGBTuple]
 
 logging.basicConfig(
     format="%(asctime)s.%(msecs)03d [%(levelname)s] %(name)s (%(filename)s:%(lineno)d): %(message)s",
-    level=logging.INFO,
+    level=LOGGER_LEVEL,
     datefmt="%Y-%m-%d %H:%M:%S",
 )
 
@@ -42,7 +50,7 @@ class SenseHat:
 
         self.root = tk.Tk()
         self.root.title("Mock SenseHAT")
-        self.led_matrix = [None] * 64
+        self.led_matrix: LEDMatrix = [None] * 64
         self.create_led_matrix()
 
         # Set initial color of the LED matrix
@@ -68,7 +76,11 @@ class SenseHat:
         self.logger.debug("Creating mock SenseHAT LED matrix")
         for i, j in itertools.product(range(8), range(8)):
             frame = tk.Frame(
-                self.root, width=30, height=30, bd=1, relief="solid"
+                self.root,
+                width=TK_WINDOW_WIDTH,
+                height=TK_WINDOW_HIGHT,
+                bd=1,
+                relief="solid",
             )
             frame.grid(row=i, column=j)
             self.led_matrix[i * 8 + j] = frame  # type: ignore
