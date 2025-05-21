@@ -19,7 +19,7 @@ class Happy(Smiley, Blinkable):
         for pixel in mouth:
             self.pixels[pixel] = self.BLANK
 
-    def draw_eyes(self, wide_open=True):
+    def draw_eyes(self, wide_open: bool = True):
         """Draws the eyes (open or closed) on the standard smiley.
 
         :param wide_open (bool): eyes open or closed.
@@ -28,7 +28,7 @@ class Happy(Smiley, Blinkable):
         for pixel in eyes:
             self.pixels[pixel] = self.BLANK if wide_open else self.YELLOW
 
-    def blink(self, delay=0.25):
+    def blink(self, delay: float = 0.25):
         """Blinks the smiley's eyes once.
 
         :param delay: Delay between blinks (in seconds)

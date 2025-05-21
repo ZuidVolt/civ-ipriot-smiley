@@ -11,17 +11,18 @@ import multiprocessing as mp
 import queue
 import time
 import tkinter as tk
+from typing import Final
+
+from type_shed import LEDMatrix
 
 # raf consts
-DEFAULT_RGB = [(255, 255, 255)] * 64
+DEFAULT_RGB: Final[LEDMatrix] = [(255, 255, 255)] * 64
 
 # my consts
-LOGGER_LEVEL: int = logging.DEBUG  # Default: INFO
-TK_WINDOW_HIGHT = 60
-TK_WINDOW_WIDTH = 60
+LOGGER_LEVEL: Final[int] = logging.DEBUG  # Default: INFO
+TK_WINDOW_HIGHT: Final[int] = 60
+TK_WINDOW_WIDTH: Final[int] = 60
 
-type RGBTuple = tuple[int, int, int] | None
-type LEDMatrix = list[RGBTuple]
 
 logging.basicConfig(
     format="%(asctime)s.%(msecs)03d [%(levelname)s] %(name)s (%(filename)s:%(lineno)d): %(message)s",
@@ -31,7 +32,7 @@ logging.basicConfig(
 
 
 class SenseHat:
-    def __init__(self, background=DEFAULT_RGB):
+    def __init__(self, background: LEDMatrix = DEFAULT_RGB):
         self.logger = logging.getLogger(__name__)
         self._low_light = False
         self.logger.info("Starting mock SenseHAT")
@@ -42,7 +43,7 @@ class SenseHat:
         self.process.start()
         self.logger.debug("Started mock SenseHAT process")
 
-    def run_hat_gui(self, initial_rgb_values):
+    def run_hat_gui(self, initial_rgb_values: LEDMatrix):
         """Tkinter GUI for the mock SenseHAT. Tkinter is not thread-safe, so we need to run it in a separate process."""
         self.logger.debug("Starting GUI")
         self.rgb_values = initial_rgb_values
@@ -85,7 +86,7 @@ class SenseHat:
             frame.grid(row=i, column=j)
             self.led_matrix[i * 8 + j] = frame  # type: ignore
 
-    def _set_pixels(self, rgb_values):
+    def _set_pixels(self, rgb_values: LEDMatrix):
         self.logger.debug("Setting mock SenseHAT LED matrix pixel values")
         self.logger.debug(f"{self.low_light=}")
         if self.low_light:
@@ -105,7 +106,7 @@ class SenseHat:
             self.led_matrix[i].config(bg="#%02x%02x%02x" % rgb)  # type: ignore
             # config is a method of tkinter.Frame, but mypy thinks it is a property
 
-    def set_pixels(self, rgb_values):
+    def set_pixels(self, rgb_values: LEDMatrix):
         """Emulates the SenseHAT.set_pixels method."""
         self.logger.debug("set_pixels called")
         self.queue.put(("set_pixels", rgb_values))

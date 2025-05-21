@@ -14,7 +14,7 @@ class Sad(Smiley):
         for pixel in mouth:
             self.pixels[pixel] = self.BLANK
 
-    def draw_eyes(self, wide_open=True):
+    def draw_eyes(self, wide_open: bool = True):
         """Draws open or closed eyes on a smiley.
 
         :param wide_open: Render eyes wide open or shut.

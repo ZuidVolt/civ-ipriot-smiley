@@ -19,11 +19,12 @@ unsafe-fixes = true
 preview = true
 
 [tool.pyright]
-typeCheckingMode = "basic"
+typeCheckingMode = "strict"
 pythonVersion = "3.12"
 reportUnusedCallResult = false
 # reportAny = false
 # reportExplicitAny = false
+ignore = ["sense_hat.py"]
 
 [tool.ruff.lint]
 preview = true

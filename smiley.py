@@ -1,6 +1,7 @@
 # ruff: noqa: N806 E741
 
-from sense_hat import LEDMatrix, SenseHat
+from sense_hat import SenseHat
+from type_shed import LEDMatrix
 
 
 class Smiley:
