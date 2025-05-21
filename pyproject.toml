@@ -1,0 +1,40 @@
+[project]
+name = "civ-ipriot-smiley"
+version = "0.1.0"
+description = ""
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = ["sense-hat==2.2.0"]
+
+[project.license]
+text = "Apache License"
+
+[project.optional-dependencies]
+dev = ["ruff"]
+
+[tool.ruff]
+line-length = 79
+fix = true
+unsafe-fixes = true
+preview = true
+
+[tool.pyright]
+typeCheckingMode = "basic"
+pythonVersion = "3.13"
+reportUnusedCallResult = false
+reportAny = false
+reportExplicitAny = false
+
+[tool.ruff.lint]
+preview = true
+select = [ "RUF", "D", "F", "E", "W", "N", "I", "A", "B", "Q", "C90", "PL", "PLC", "PLE", "PLR", "PLW",]
+ignore = [ "PLR0913", "PLR0911", "PLR0914", "PLR6301", "PD901", "E501", "RUF100", "PGH003", "PLR0911", "PLR0912", "D100", "D101", "D102", "D103", "D104", "D105", "D106", "D107",]
+
+[tool.ruff.format]
+quote-style = "double"
+docstring-code-format = true
+docstring-code-line-length = "dynamic"
+indent-style = "space"
+
+[tool.ruff.lint.pydocstyle]
+convention = "google"
