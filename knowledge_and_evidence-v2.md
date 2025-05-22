@@ -68,19 +68,19 @@ python3 main.py
 
 1. Examine the code for the `smiley.py` file and provide  an example of a variable of each of the following types and their corresponding values (`_` should be replaced with the appropriate values):
 
-   | Type                    | name       | value          |
-   | ----------              | ---------- | -------------- |
-   | built-in primitive type | _          |  _             |
-   | built-in composite type | _          |  _             |
-   | user-defined type       | _          |  _             |
+  | Type                    | name       | value          |
+  | ------------------------| ---------- | -------------- |
+  | built-in primitive type | dimmed     | Bool           |
+  | built-in composite type | pixels     | List of tuples |
+  | user-defined type       | sense_hat  | SenseHat object|
 
 2. Fill in (`_`) the following table based on the code in `smiley.py`:
 
-   | Object                   | Type                    |
-   | ------------             | ----------------------- |
-   | self.pixels              | _                       |
-   | A member of self.pixels  | _                       |
-   | self                     | _                       |
+  | Object                   | Type                    |
+  | -------------------------| ------------------------|
+  | self.pixels              | list                    |
+  | A member of self.pixels  | tuple                   |
+  | self                     | Smiley                  |
 
 3. Examine the code for `smiley.py`, `sad.py`, and `happy.py`. Give an example of each of the following control structures using an example from **each** of these files. Include the first line and the line range:
 
@@ -137,7 +137,7 @@ python3 main.py
 > Note: Ignore the `sense_hat.py` file when answering the questions below
 
 1. List all the classes you identified in the project. Indicate which classes are base classes and which are subclasses. For subclasses, identify all direct base classes.
-  
+
   Use the following table for your answers:
 
 | Class Name | Super or Sub? | Direct parent(s) |
