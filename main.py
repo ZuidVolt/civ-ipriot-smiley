@@ -20,9 +20,6 @@ def main():
 
 
 if __name__ == "__main__":
-    ############################################################
-    # Uncomment the lines below only if you have multi-processing issues
     # from multiprocessing import freeze_support
     # freeze_support()
-    ############################################################
     main()

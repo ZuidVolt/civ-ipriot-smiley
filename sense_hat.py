@@ -13,7 +13,7 @@ import time
 import tkinter as tk
 from typing import Final
 
-from type_shed import LEDMatrix
+from type_shed import LEDMatrix, NullableLEDMatrix
 
 # raf consts
 DEFAULT_RGB: Final[LEDMatrix] = [(255, 255, 255)] * 64
@@ -51,7 +51,7 @@ class SenseHat:
 
         self.root = tk.Tk()
         self.root.title("Mock SenseHAT")
-        self.led_matrix: LEDMatrix = [None] * 64
+        self.led_matrix: NullableLEDMatrix = [None] * 64
         self.create_led_matrix()
 
         # Set initial color of the LED matrix
