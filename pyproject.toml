@@ -23,7 +23,7 @@ typeCheckingMode = "strict"
 pythonVersion = "3.12"
 # reportAny = false
 # reportExplicitAny = false
-ignore = ["sense_hat.py"]
+ignore = ["sense_hat.py", ".venv/"]
 
 [tool.ruff.lint]
 preview = true
