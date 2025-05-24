@@ -32,8 +32,8 @@ class Transition:
                 print(f"{frame[row_start:row_end]}")
 
     def slide_effect_transition(
-        self, current_sate: LEDMatrix, ending_state: LEDMatrix
-    ) -> TransitionFrames:  # type: ignore
+        self, current_state: LEDMatrix, ending_state: LEDMatrix
+    ) -> TransitionFrames:
         """Generates a sliding transition effect from the current state to the ending state.
 
         Returns:
@@ -42,7 +42,7 @@ class Transition:
         Raises:
            ValueError: If the attribute ending_state or current_state LED matrix is not 8x8 pixels.
         """
-        self.current_state_led_matrix = current_sate
+        self.current_state_led_matrix = current_state
         self.ending_state_led_matrix = ending_state
         self._check_if_valid_input_matrices()
         frames: TransitionFrames = []
@@ -56,7 +56,7 @@ class Transition:
         return frames
 
     def slide_effect_transition_slow(
-        self, current_sate: LEDMatrix, ending_state: LEDMatrix
+        self, current_state: LEDMatrix, ending_state: LEDMatrix
     ) -> TransitionFrames:
         """Generates a sliding transition effect from the current state to the ending state.
 
@@ -66,7 +66,7 @@ class Transition:
         Raises:
            ValueError: If the attribute ending_state or current_state LED matrix is not 8x8 pixels.
         """
-        self.current_state_led_matrix = current_sate
+        self.current_state_led_matrix = current_state
         self.ending_state_led_matrix = ending_state
         self._check_if_valid_input_matrices()
         frames: TransitionFrames = []
@@ -76,7 +76,9 @@ class Transition:
             for row in range(8):
                 new_matrix_frame[row * 8 + column] = ending_state_column[row]
                 frames.append(new_matrix_frame.copy())
-        assert len(frames) == 64, "There should be 8 frames in the transition."
+        assert len(frames) == 64, (
+            "There should be 64 frames in the transition."
+        )
         return frames
 
 

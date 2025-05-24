@@ -28,7 +28,7 @@ ignore = ["sense_hat.py", ".venv/"]
 [tool.ruff.lint]
 preview = true
 select = [ "RUF", "D", "F", "E", "W", "N", "I", "A", "B", "Q", "C90", "PL", "PLC", "PLE", "PLR", "PLW",]
-ignore = [ "PLR0913", "PLR0911", "PLR0914", "PLR6301", "PD901", "E501", "RUF100", "PGH003", "PLR0911", "PLR0912", "D100", "D101", "D102", "D103", "D104", "D105", "D106", "D107",]
+ignore = [ "PLR0913", "PLR0911", "PLR0914", "PLR6301", "PD901", "E501", "RUF100", "PGH003", "PLR0911", "PLR0912", "D100", "D101", "D102", "D103", "D104", "D105", "D106", "D107","PLR2004"]
 
 [tool.ruff.format]
 quote-style = "double"
