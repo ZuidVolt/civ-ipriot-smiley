@@ -10,7 +10,7 @@ dependencies = ["sense-hat==2.2.0"]
 text = "Apache License"
 
 [project.optional-dependencies]
-dev = ["ruff"]
+dev = ["ruff","debugpy"]
 
 [tool.ruff]
 line-length = 79
