@@ -11,7 +11,7 @@ class Smiley:
     YELLOW = (255, 255, 0)
     BLANK = (0, 0, 0)
 
-    def __init__(self):
+    def __init__(self) -> None:
         # We have encapsulated the SenseHat object
         self.sense_hat = SenseHat()
         # fmt: off
@@ -29,13 +29,13 @@ class Smiley:
         ]
         # fmt: on
 
-    def dim_display(self, dimmed: bool = True):
+    def dim_display(self, dimmed: bool = True) -> None:
         """Set the SenseHat's light intensity to low (True) or high (False).
 
         :param dimmed: Dim the display if True, otherwise don't dim.
         """
         self.sense_hat.low_light = dimmed
 
-    def show(self):
+    def show(self) -> None:
         """Show the smiley on the screen."""
         self.sense_hat.set_pixels(self.pixels)

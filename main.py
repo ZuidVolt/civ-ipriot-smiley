@@ -9,7 +9,7 @@ import time
 from happy import Happy
 
 
-def main():
+def main() -> None:
     smiley = Happy()
 
     smiley.show()

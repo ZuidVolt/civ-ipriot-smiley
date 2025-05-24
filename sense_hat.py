@@ -32,7 +32,7 @@ logging.basicConfig(
 
 
 class SenseHat:
-    def __init__(self, background: LEDMatrix = DEFAULT_RGB):
+    def __init__(self, background: LEDMatrix = DEFAULT_RGB) -> None:
         self.logger = logging.getLogger(__name__)
         self._low_light = False
         self.logger.info("Starting mock SenseHAT")
@@ -43,7 +43,7 @@ class SenseHat:
         self.process.start()
         self.logger.debug("Started mock SenseHAT process")
 
-    def run_hat_gui(self, initial_rgb_values: LEDMatrix):
+    def run_hat_gui(self, initial_rgb_values: LEDMatrix) -> None:
         """Tkinter GUI for the mock SenseHAT. Tkinter is not thread-safe, so we need to run it in a separate process."""
         self.logger.debug("Starting GUI")
         self.rgb_values = initial_rgb_values
@@ -61,7 +61,7 @@ class SenseHat:
         self.logger.debug("Starting mock SenseHAT GUI mainloop")
         self.root.mainloop()
 
-    def refresh_gui_from_queue(self):
+    def refresh_gui_from_queue(self) -> None:
         """Updates the GUI using a queue for communication with the main process."""
         # TODO: investigate if using a queue is mandatory
         with contextlib.suppress(queue.Empty):
@@ -72,7 +72,7 @@ class SenseHat:
                 self._low_light = payload
         self.root.after(1000, SenseHat.refresh_gui_from_queue, self)
 
-    def create_led_matrix(self):
+    def create_led_matrix(self) -> None:
         """Creates the LED matrix for the GUI using a grid of tkinter Frames."""
         self.logger.debug("Creating mock SenseHAT LED matrix")
         for i, j in itertools.product(range(8), range(8)):
@@ -86,7 +86,7 @@ class SenseHat:
             frame.grid(row=i, column=j)
             self.led_matrix[i * 8 + j] = frame  # type: ignore
 
-    def _set_pixels(self, rgb_values: LEDMatrix):
+    def _set_pixels(self, rgb_values: LEDMatrix) -> None:
         self.logger.debug("Setting mock SenseHAT LED matrix pixel values")
         self.logger.debug(f"{self.low_light=}")
         if self.low_light:
@@ -106,7 +106,7 @@ class SenseHat:
             self.led_matrix[i].config(bg="#%02x%02x%02x" % rgb)  # type: ignore
             # config is a method of tkinter.Frame, but mypy thinks it is a property
 
-    def set_pixels(self, rgb_values: LEDMatrix):
+    def set_pixels(self, rgb_values: LEDMatrix) -> None:
         """Emulates the SenseHAT.set_pixels method."""
         self.logger.debug("set_pixels called")
         self.queue.put(("set_pixels", rgb_values))
@@ -117,14 +117,14 @@ class SenseHat:
         return self._low_light
 
     @low_light.setter
-    def low_light(self, value):
+    def low_light(self, value) -> None:
         self.queue.put(("low_light", value))
 
-    def close(self):
+    def close(self) -> None:
         self.root.destroy()
 
 
-def main():  # sourcery skip: extract-duplicate-method
+def main() -> None:  # sourcery skip: extract-duplicate-method
     """Used only to quickly test and demonstrate the mock SenseHAT class."""
     # from signal import pause
     rgb_values = [(255, 0, 0)] * 64

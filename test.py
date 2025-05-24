@@ -47,5 +47,5 @@ if __name__ == "__main__":
                 case _:
                     suffix = "th"
             print(
-                f"The element at the {i + 1}{suffix} row and {j + 1}{suffix} column: {element}"
+                f"The element at the {i + 1}{suffix} row and {j + 1}{suffix} column: {element}",
             )

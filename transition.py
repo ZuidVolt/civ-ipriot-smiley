@@ -4,7 +4,7 @@ type TransitionFrames = list[LEDMatrix]
 
 
 class Transition:
-    def __init__(self):
+    def __init__(self) -> None:
         self.current_state_led_matrix: LEDMatrix = []
         self.ending_state_led_matrix: LEDMatrix = []
 
@@ -15,13 +15,13 @@ class Transition:
             ValueError: If the attribute ending_state or current_state LED matrix is not 8x8 pixels.
         """
         if not check_led_matrix_size(self.ending_state_led_matrix):
-            raise ValueError(
+            msg = (
                 "input ending state LED matrix must be 8x8 pixels. (len == 64)"
             )
+            raise ValueError(msg)
         if not check_led_matrix_size(self.current_state_led_matrix):
-            raise ValueError(
-                "input current state LED matrix must be 8x8 pixels. (len == 64)"
-            )
+            msg = "input current state LED matrix must be 8x8 pixels. (len == 64)"
+            raise ValueError(msg)
 
     def pretty_print_frames(self, frames: TransitionFrames) -> None:
         for i, frame in enumerate(frames):
@@ -32,7 +32,9 @@ class Transition:
                 print(f"{frame[row_start:row_end]}")
 
     def slide_effect_transition(
-        self, current_state: LEDMatrix, ending_state: LEDMatrix
+        self,
+        current_state: LEDMatrix,
+        ending_state: LEDMatrix,
     ) -> TransitionFrames:
         """Generates a sliding transition effect from the current state to the ending state.
 
@@ -56,7 +58,9 @@ class Transition:
         return frames
 
     def slide_effect_transition_slow(
-        self, current_state: LEDMatrix, ending_state: LEDMatrix
+        self,
+        current_state: LEDMatrix,
+        ending_state: LEDMatrix,
     ) -> TransitionFrames:
         """Generates a sliding transition effect from the current state to the ending state.
 
