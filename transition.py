@@ -83,7 +83,6 @@ class Transition:
 
 
 if __name__ == "__main__":
-    # Example usage
     white: RGBTuple = (255, 255, 255)
     black: RGBTuple = (0, 0, 0)
     current_state: LEDMatrix = [black] * 64
