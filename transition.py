@@ -1,4 +1,4 @@
-from type_shed import LEDMatrix, check_led_matrix_size
+from type_shed import LEDMatrix, RGBTuple, check_led_matrix_size
 
 type TransitionFrames = list[LEDMatrix]
 
@@ -16,11 +16,11 @@ class Transition:
         """
         if not check_led_matrix_size(self.ending_state_led_matrix):
             raise ValueError(
-                "input ending state LED matrix must be 8x8 pixels."
+                "input ending state LED matrix must be 8x8 pixels. (len == 64)"
             )
         if not check_led_matrix_size(self.current_state_led_matrix):
             raise ValueError(
-                "input current state LED matrix must be 8x8 pixels."
+                "input current state LED matrix must be 8x8 pixels. (len == 64)"
             )
 
     def pretty_print_frames(self, frames: TransitionFrames) -> None:
@@ -84,8 +84,8 @@ class Transition:
 
 if __name__ == "__main__":
     # Example usage
-    white = (255, 255, 255)
-    black = (0, 0, 0)
+    white: RGBTuple = (255, 255, 255)
+    black: RGBTuple = (0, 0, 0)
     current_state: LEDMatrix = [black] * 64
     ending_state: LEDMatrix = [white] * 64
     transition = Transition()
