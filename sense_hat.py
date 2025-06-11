@@ -1,3 +1,4 @@
+# pyrefly: ignore-all-errors
 """Mock SenseHAT class. If you have access to a SenseHAT (either via a Raspberry Pi or a SenseHAT emulator), you can use the real SenseHAT class instead of this one.).
 
 To do that DELETE this file so that it will not shadow the sense_hat class installed in your system.
@@ -23,7 +24,6 @@ LOGGER_LEVEL: Final[int] = logging.DEBUG  # Default: INFO
 TK_WINDOW_HIGHT: Final[int] = 60
 TK_WINDOW_WIDTH: Final[int] = 60
 
-
 logging.basicConfig(
     format="%(asctime)s.%(msecs)03d [%(levelname)s] %(name)s (%(filename)s:%(lineno)d): %(message)s",
     level=LOGGER_LEVEL,
@@ -36,7 +36,7 @@ class SenseHat:
         self.logger = logging.getLogger(__name__)
         self._low_light = False
         self.logger.info("Starting mock SenseHAT")
-        self.queue = mp.Queue()
+        self.queue: mp.Queue[tuple[str, object]] = mp.Queue()
         self.process = mp.Process(target=self.run_hat_gui, args=(background,))
         time.sleep(1)  # Give the process some time to start
         self.logger.debug("Starting mock SenseHAT process")
@@ -67,9 +67,9 @@ class SenseHat:
         with contextlib.suppress(queue.Empty):
             message, payload = self.queue.get_nowait()
             if message == "set_pixels":
-                self._set_pixels(payload)
+                self._set_pixels(payload)  # type: ignore
             elif message == "low_light":
-                self._low_light = payload
+                self._low_light = payload  # type: ignore
         self.root.after(1000, SenseHat.refresh_gui_from_queue, self)
 
     def create_led_matrix(self) -> None:
@@ -117,7 +117,7 @@ class SenseHat:
         return self._low_light
 
     @low_light.setter
-    def low_light(self, value) -> None:
+    def low_light(self, value: bool) -> None:
         self.queue.put(("low_light", value))
 
     def close(self) -> None:

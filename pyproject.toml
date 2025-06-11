@@ -10,7 +10,8 @@ dependencies = ["sense-hat==2.2.0"]
 text = "Apache License"
 
 [project.optional-dependencies]
-dev = ["ruff","debugpy", "pyrefly"]
+dev = ["ruff","debugpy","pyrefly"]
+
 
 [tool.ruff]
 line-length = 79
@@ -23,7 +24,7 @@ typeCheckingMode = "strict"
 pythonVersion = "3.12"
 # reportAny = false
 # reportExplicitAny = false
-ignore = ["sense_hat.py", ".venv/"]
+# ignore = ["sense_hat.py", ".venv/"]
 
 [tool.pyrefly]
 python_version = "3.12.0"

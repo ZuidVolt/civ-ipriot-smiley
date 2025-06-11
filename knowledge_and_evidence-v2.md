@@ -84,20 +84,62 @@ python3 main.py
 
 3. Examine the code for `smiley.py`, `sad.py`, and `happy.py`. Give an example of each of the following control structures using an example from **each** of these files. Include the first line and the line range:
 
-   | Control Flow | File       | First line  | Line range  |
-   | ------------ | ---------- | ----------- | ----------- |
-   |  sequence    |  _         | _           | _           |
-   |  selection   | _          | _           | _           |
-   |  iteration   | _          | _           | _           |
+   | Control Flow | File       | First line                | Line range                |
+   | ------------ | ---------- | -----------               | -----------               |
+   |  sequence    | happy.py   | line 36                   | line 40                   |
+   |  selection   | sad.py     | line 24                   | line 27                   |
+   |  iteration   | sad.py     | line 14                   | line 15                   |
 
 4. Though everything in Python is an object, it is sometimes said to have four "primitive" types. Examining the three files `smiley.py`, `sad.py`, and `happy.py`, identify which of the following types are used in any of these files, and give an example of each (use an example from the code, if applicable, otherwise provide an example of your own):
 
-   | Type                    | Used? | Example |
-   | ----------------------- | ----- | --------|
-   | int                     | _     | _          |
-   | float                   | _     | _          |
-   | str                     | _     | _          |
-   | bool                    | _     | _          |
+| Type  | Used?  | Example |
+|-------|--------|---------|
+| int   | pixel  | See code example below |
+| float | delay  | See code example below |
+| str   | *      | See code example below |
+| bool  | wide_open | See code example below |
+
+**int example:**
+```py
+# Excerpt from: class Sad > def draw_mouth
+mouth: list[int] = [49, 54, 42, 43, 44, 45]
+for pixel in mouth:
+    self.pixels[pixel] = self.BLANK
+```
+
+**float example:**
+```py civ-ipriot-smiley/happy.py:31-38
+# Excerpt from: class Happy
+# uses a float value for the delay in the blink method where 0.25 is 0.25 seconds of default delay
+    def blink(self, delay: float = 0.25) -> None:
+        """Blinks the smiley's eyes once.
+
+        :param delay: Delay between blinks (in seconds)
+        """
+        self.draw_eyes(wide_open=False)
+        self.show()
+        time.sleep(delay)
+```
+
+**str example:**
+- todo
+
+
+**bool example:**
+```py civ-ipriot-smiley/sad.py:17-28
+# Excerpt from: class Sad > def draw_eyes
+# uses an if statement to determine if the eyes should be wide open or not using a the bool value `wide_open`
+    def draw_eyes(self, wide_open: bool = True) -> None:
+        eyes = [10, 13, 18, 21]
+        for pixel in eyes:
+            if wide_open:
+                eyes = self.BLANK
+            else:
+                eyes = self.YELLOW
+            self.pixels[pixel] = eyes
+```
+
+
 
 5. Examining `smiley.py`, provide an example of a class variable and an instance variable (attribute). Explain **why** one is defined as a class variable and the other as an instance variable.
 
@@ -108,24 +150,24 @@ python3 main.py
    1. What is the purpose of a constructor (in general) and this one (in particular)?
 
    > Your answer here
-   >
+   > A constructor is a special method that is called when an object is created. This allows code to run when the object is created, usually to set up the initial attributes of the object. In the Happy class, the constructor is used to set up the starting state of the class by calling `self.draw_mouth()` and `self.draw_eyes()`, which ensures that the GUI state is correct before trying to modify it.
 
    2. What statement(s) does it execute (consider the `super` call), and what is the result?
 
    > Your answer here
-   >
+   > The `super` function allows a child class to call its inherited parent methods. In this instance, it calls the constructors of the parent classes, `Smiley` and `Blinkable`. The `Smiley` class has a constructor that initializes the `SenseHat()` object, which controls the GUI and all initializations, and it also initializes `self.pixels`, which is a state of the GUI represented by at least a list of tuples. `Blinkable` is an abstract class and doesn't include a constructor. Lastly, as described in the answer to the previous question, `self.draw_mouth()` and `self.draw_eyes()` ensure that the GUI state is correct before trying to modify it.
 
 ### 2.3. Code style
 
-1. What code style is used in the code? Is it likely to be the same as the code style used in the SenseHat? Give to reasons as to why/why not:
+1. What code style is used in the code? Is it likely to be the same as the code style used in the SenseHat? Give two reasons as to why/why not:
 
 > Your answer here
->
+> The code style of object-oriented programming (OOP) is used in the happy.py file. It is very likely that SenseHat would also be OOP, as when importing and using that library, like in the example of the 'Smiley' class constructor, `SenseHat()` is an object which is then assigned to the variable 'self.sense_hat' and not a function. This would make it highly likely that the rest of the coding style within the module is also OOP.
 
 2. List three aspects of this convention you see applied in the code.
 
 > Your answer here
->
+> Inheritance, Abstraction, Polymorphism - to be finished
 
 3. Give two examples of organizational documentation in the code.
 
@@ -140,10 +182,12 @@ python3 main.py
 
   Use the following table for your answers:
 
-| Class Name | Super or Sub? | Direct parent(s) |
-| ---------- | ------------- | ---------------- |
-| NotReal    | Sub           | NotRealParent    |
-|   ...      |   ...         |      ...         |
+| Class Name | Super or Sub? | Direct parent(s)   |
+| ---------- | ------------- | ----------------   |
+| Smiley     | Super         | None               |
+| Sad        | Sub           | Smiley             |
+| Blinkable  | Super         | None               |
+| Happy      | Sub           | Smiley, Blinkable  |
 
 2. Explain the concept of abstraction, giving an example from the project (note "implementing an ABC" is **not** in itself an example of abstraction). (Max 150 words)
 
