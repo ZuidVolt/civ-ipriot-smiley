@@ -1,4 +1,7 @@
 
+run:
+    uv run -p3.12 main.py
+
 # main check (Enforced before commit)
 
 format:
@@ -15,8 +18,6 @@ pyrefly-check:
 
 check: format ruff-check basedpyright-check pyrefly-check
 
-test:
-    pytest -v tests/
 
 # Additional analysis checks (not Enforced)
 
