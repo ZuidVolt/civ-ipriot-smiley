@@ -10,6 +10,7 @@ class Smiley:
     RED = (255, 0, 0)
     YELLOW = (255, 255, 0)
     BLANK = (0, 0, 0)
+    BLUE = (0, 0, 255)
 
     def __init__(self) -> None:
         # We have encapsulated the SenseHat object
