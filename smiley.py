@@ -1,7 +1,7 @@
 # ruff: noqa: N806 E741
 
 from sense_hat import SenseHat
-from type_shed import LEDMatrix
+from type_shed import LEDMatrix, RGBTuple
 
 
 class Smiley:
@@ -12,9 +12,10 @@ class Smiley:
     BLANK = (0, 0, 0)
     BLUE = (0, 0, 255)
 
-    def __init__(self) -> None:
+    def __init__(self, complexion: RGBTuple = YELLOW) -> None:
         # We have encapsulated the SenseHat object
         self.sense_hat = SenseHat()
+        self.my_complexion: RGBTuple = complexion
         # fmt: off
         Y = self.YELLOW
         O = self.BLANK
@@ -40,3 +41,6 @@ class Smiley:
     def show(self) -> None:
         """Show the smiley on the screen."""
         self.sense_hat.set_pixels(self.pixels)
+
+    def complexion(self) -> RGBTuple:
+        return self.my_complexion
