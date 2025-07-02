@@ -11,20 +11,17 @@ from sad import Sad
 
 
 def main() -> None:
+    print("Showing Happy Smiley (default yellow)...")
     smiley = Happy()
-
     smiley.show()
-
     time.sleep(1)
-
     smiley.blink()
-
-    sad = Sad()
-
-    sad.show()
-
     time.sleep(1)
 
+    print("Showing Sad Smiley (blue)...")
+    sad = Sad()
+    sad.show()
+    time.sleep(1)
     sad.blink()
 
 
