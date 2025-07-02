@@ -27,14 +27,15 @@ def main() -> None:
     time.sleep(1)
 
     print("Showing Angry Smiley (red)...")
-    angry = Angry()  # Create an instance of Angry smiley
-    angry.show()  # Show the angry smiley
+    angry = Angry()
+    angry.show()
     time.sleep(1)
-    angry.blink()  # Blink the angry smiley
+    angry.blink()
     time.sleep(1)
-    angry.turn_sick()  # Transition to sick complexion
+    # extra functionality to change complexion with a transitions
+    angry.turn_sick()
     time.sleep(1)
-    angry.turn_angry()  # Transition back to angry complexion
+    angry.turn_angry()
     time.sleep(1)
 
 
