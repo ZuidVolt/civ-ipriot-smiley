@@ -8,6 +8,7 @@ class Happy(Smiley, Blinkable):
     """Provides a Smiley with a happy expression."""
 
     def __init__(self) -> None:
+        # Calls super().__init__() which now uses the default YELLOW complexion
         super().__init__()
 
         self.draw_mouth()
@@ -26,7 +27,10 @@ class Happy(Smiley, Blinkable):
         """
         eyes = [10, 13, 18, 21]
         for pixel in eyes:
-            self.pixels[pixel] = self.BLANK if wide_open else self.YELLOW
+            # Use the smiley's own complexion color when eyes are closed
+            self.pixels[pixel] = (
+                self.BLANK if wide_open else self.my_complexion
+            )
 
     def blink(self, delay: float = 0.25) -> None:
         """Blinks the smiley's eyes once.
